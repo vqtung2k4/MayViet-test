@@ -5,16 +5,18 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 # ---------- Runtime stage ----------
-FROM tomcat:9.0.113-jdk17
+FROM tomcat:9.0-jdk17-temurin
+
+# Railway uses dynamic port
+ENV PORT=8080
 
 # Remove default apps
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Deploy WAR as ROOT app
+# Deploy as ROOT app
 COPY --from=build /app/target/*.war /usr/local/tomcat/webapps/ROOT.war
 
-# Railway provides PORT dynamically
-ENV PORT=8080
+# Expose Railway port
 EXPOSE 8080
 
 CMD ["catalina.sh", "run"]
