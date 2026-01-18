@@ -5,7 +5,7 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 # ---------- Runtime stage ----------
-FROM tomcat:9.0-jdk17-temurin
+FROM tomcat:10.1-jdk17-temurin
 
 # Railway uses dynamic port
 ENV PORT=8080
