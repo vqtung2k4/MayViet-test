@@ -7,6 +7,7 @@ public class LoginController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        // Show login page
         request.getRequestDispatcher("/Views/Auths/Login.jsp")
                 .forward(request, response);
     }
